@@ -2,9 +2,18 @@ from textblob import TextBlob
 from twitter_scraper import get_tweets
 
 
-username = input('Username: ')
+def analyze(username):
+    for tweet in get_tweets(username, pages=1):
+        blob = TextBlob(tweet['text'])
 
-for tweet in get_tweets(username, pages=1):
-    blob = TextBlob(tweet['text'])
-    print(blob.sentiment)
+        print(blob.sentiment)
+
+
+def main():
+    username = input('Username: ')
+    analyze(username)
+
+
+if __name__ == '__main__':
+    main()
 
